@@ -21,12 +21,15 @@ public class MainActivity extends AppCompatActivity {
         transactionModel.setTranref(transRef);
         transactionModel.setCurrency("NGN");
         transactionModel.setEmail("adewoleopw@gmail.com");
-        transactionModel.setAmount(1000);
+        transactionModel.setAmount("1000");
         transactionModel.setDescription("Payment of bils");
         transactionModel.setCountry("NG");
         transactionModel.setCallbackurl("https://whatever.com");
         transactionModel.setPublic_key("SBTESTPUBK_y9xF4issbbpKaMEnP5Fv4y0u75523ko2");
         transactionModel.setFull_name("Adewole Opeyemi");
+        transactionModel.setCloseOnSuccess(false);
+        transactionModel.setClosePrompt(false);
+        transactionModel.setSetAmountByCustomer(false);
         seerbitWebView = new SeerbitView(this);
         webView.addView(seerbitWebView);
         seerbitWebView.open(transactionModel);

@@ -3,8 +3,21 @@ package com.seerbit.seerbitandroid.view.webviews;
 import android.webkit.JavascriptInterface;
 
 public class TransactionModel {
-    String tranref, currency, email, description, full_name, country, callbackurl, public_key, pocketReference, vendorId;
-    int amount;
+    String tranref,
+            currency,
+            email,
+            description,
+            full_name,
+            country,
+            callbackurl,
+            public_key,
+            pocketReference,
+            vendorId,
+            amount;
+            boolean setAmountByCustomer = false;
+            boolean close_prompt = false;
+            boolean close_on_success = false;
+
 
     public TransactionModel(String tranref,
                             String currency,
@@ -16,8 +29,11 @@ public class TransactionModel {
                             String public_key,
                             String pocketReference,
                             String vendorId,
-                            String version,
-                            int amount) {
+                            Boolean setAmountByCustomer,
+                            Boolean closePrompt,
+                            Boolean closeOnSuccess,
+                            String amount
+    ) {
         this.tranref = tranref;
         this.currency = currency;
         this.email = email;
@@ -29,9 +45,42 @@ public class TransactionModel {
         this.pocketReference = pocketReference;
         this.vendorId = vendorId;
         this.amount = amount;
+        this.setAmountByCustomer = setAmountByCustomer;
+        this.close_prompt = closePrompt;
+        this.close_on_success = closeOnSuccess;
     }
 
     public TransactionModel() {
+    }
+
+    @JavascriptInterface
+    public boolean isCloseOnSuccess() {
+        return close_on_success;
+    }
+
+    @JavascriptInterface
+    public void setCloseOnSuccess(boolean close_on_success) {
+        this.close_on_success = close_on_success;
+    }
+
+    @JavascriptInterface
+    public boolean isClosePrompt() {
+        return close_prompt;
+    }
+
+    @JavascriptInterface
+    public void setClosePrompt(boolean close_prompt) {
+        this.close_prompt = close_prompt;
+    }
+
+    @JavascriptInterface
+    public boolean isSetAmountByCustomer() {
+        return setAmountByCustomer;
+    }
+
+    @JavascriptInterface
+    public void setSetAmountByCustomer(boolean setAmountByCustomer) {
+        this.setAmountByCustomer = setAmountByCustomer;
     }
 
     @JavascriptInterface
@@ -135,12 +184,12 @@ public class TransactionModel {
     }
 
     @JavascriptInterface
-    public int getAmount() {
+    public String getAmount() {
         return amount;
     }
 
     @JavascriptInterface
-    public void setAmount(int amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 }

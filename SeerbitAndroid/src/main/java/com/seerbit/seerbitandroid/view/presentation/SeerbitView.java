@@ -36,6 +36,15 @@ public class SeerbitView extends FrameLayout implements
         addView(seerbitWebView);
     }
 
+    public void startPayment(TransactionModel transactionModel) {
+        if (seerbitWebView != null){
+            removeView(seerbitWebView);
+            seerbitWebView = null;
+        }
+        seerbitWebView = new SeerbitWebView(context, transactionModel, this, this);
+        addView(seerbitWebView);
+    }
+
     @Override
     public void redirct(String url) {
         SeerbitView view = this;
@@ -51,6 +60,18 @@ public class SeerbitView extends FrameLayout implements
     }
 
     public void close(){
+        SeerbitView view = this;
+        seerbitWebView = null;
+        seerbitRedirectWebview = null;
+        context.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                view.setVisibility(GONE);
+            }
+        });
+    }
+
+    public void endPayment(){
         SeerbitView view = this;
         seerbitWebView = null;
         seerbitRedirectWebview = null;

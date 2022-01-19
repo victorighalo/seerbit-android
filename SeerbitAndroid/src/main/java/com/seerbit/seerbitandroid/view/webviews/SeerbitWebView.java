@@ -47,6 +47,9 @@ public class SeerbitWebView extends WebView implements Callback.eventsListener{
     }
 
     protected String getHtml(TransactionModel transactionModel){
+        Log.d(TAG, "transaction model getAmount: "+transactionModel.getAmount());
+        Log.d(TAG, "transaction model isClosePrompt: "+transactionModel.isCloseOnSuccess());
+        Log.d(TAG, "transaction model isClosePrompt: "+transactionModel.isClosePrompt());
         return "<!DOCTYPE >\n" +
                 "<html>\n" +
                 "  <head>\n" +
@@ -67,6 +70,9 @@ public class SeerbitWebView extends WebView implements Callback.eventsListener{
                 "                 report_link: \"\",\n"+
                 "                 pocketReference: \""+transactionModel.getPocketReference()+"\",\n"+
                 "                 vendorId: \""+transactionModel.getVendorId()+"\",\n"+
+                "                 setAmountByCustomer: "+transactionModel.isSetAmountByCustomer()+",\n"+
+                "                 close_prompt: "+transactionModel.isClosePrompt()+",\n"+
+                "                 close_on_success: "+transactionModel.isCloseOnSuccess()+",\n"+
                 "                 version: \"0.2.0\"\n"+
                 "                },\n" +
                 "                function callback(response) {\n" +

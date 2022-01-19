@@ -141,14 +141,25 @@ transRef-> String: Used as a transaction reference
  *Fullname-> String: Used to specify the full name associated with the payment
  */
         transactionModel.setFull_name("Seer Bit");
+        /**
+
+ *setSetAmountByCustomer-> String: Used to set true to allow customer set the amount on the checkout
+ */
+        transactionModel.setSetAmountByCustomer(true);
+
+/**
+ *setClosePrompt-> String: Used to specify if the shopper/customer will be prompted to confirm the action
+ to close Checkout when the cancel button is clicked during and after a payment has started
+ */
+        transactionModel.setClosePrompt(true);
 ```
 ### Closing the seerbit SDK
 
-In case the need ever arises to manually close the seerbit SDK. There is a method that can be used to release all resources associated with the view. This is done by using the .close() which takes in no arguments.
+To close the Checkout programmatically, there are two methods on the SeerbitView class that can be used to release all resources associated with the view. This is done by using the .endPayment() or .close() which takes in no arguments.
 
 ### State flow of the API
 
-The expected workflow of the API is to firstly create an instance of the seerbit SDK, the call the .open() method by passing it a transaction model to open, the view is automatically closed after a successful transaction.
+The expected workflow of the API is to firstly create an instance of the seerbit SDK, the call the startPayment() or .open() method and passing it a transaction model to open the Checkout View, the view is automatically closed after a successful transaction.
 
 ## Contributors
 <span>
